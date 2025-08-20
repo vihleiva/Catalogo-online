@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Detalhes do Modelo</title>
+  <link rel="stylesheet" href="static/css/style.css">
+  <style>
+    .galeria img {
+      width: 200px;
+      margin: 10px;
+      cursor: zoom-in;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.8);
+    }
+    .modal img {
+      display: block;
+      max-width: 90%;
+      max-height: 90%;
+      margin: 5% auto;
+      cursor: zoom-out;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="titulo-detalhes">Detalhes do Modelo</h1>
+  <div class="galeria" id="galeria-modelo"></div>
+
+  <div class="modal" id="modal">
+    <img id="modal-img" src="" alt="Imagem ampliada">
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const time = urlParams.get('time');
+    const categoria = urlParams.get('categoria');
+    const modelo = urlParams.get('modelo');
+
+    document.getElementById('titulo-detalhes').innerText = `Detalhes do modelo ${modelo} (${categoria} - ${time})`;
+
+    const galeria = document.getElementById('galeria-modelo');
+    const imagens = ['frente.jpg', 'costas.jpg', 'detalhe1.jpg', 'detalhe2.jpg']; // Adicione conforme necessário
+
+    imagens.forEach(img => {
+      const caminho = `static/Camisas/${time}/${categoria}/${modelo}/${img}`;
+      const imagem = document.createElement('img');
+      imagem.src = caminho;
+      imagem.alt = img;
+      imagem.onclick = () => abrirModal(caminho);
+      galeria.appendChild(imagem);
+    });
+
+    function abrirModal(src) {
+      const modal = document.getElementById('modal');
+      const modalImg = document.getElementById('modal-img');
+      modalImg.src = src;
+      modal.style.display = 'block';
+    }
+
+    document.getElementById('modal').onclick = () => {
+      document.getElementById('modal').style.display = 'none';
+    };
+  </script>
+</body>
+</html>
