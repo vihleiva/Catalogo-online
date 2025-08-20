@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Modelos</title>
+  <style>
+    .modelo-img {
+      cursor: pointer;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>  
+  <h1>Modelos - Palmeiras / Masculina</h1>
+  <ul>
+    <li>
+      <p>modelo1</p>
+      <a href="modelo.html">
+        <img class="modelo-img" src="static/Camisas/img/Palmeiras/Masculina/modelo1/frente.jpg" 
+             data-folder="Camisas/img/Palmeiras/Masculina/modelo1" width="150">
+      </a>
+    </li>
+    <li>
+      <p>modelo2</p>
+      <a href="modelo.html">
+        <img class="modelo-img" src="static/Camisas/img/Palmeiras/Masculina/modelo2/frente.jpg" 
+             data-folder="Camisas/img/Palmeiras/Masculina/modelo2" width="150">
+      </a>
+    </li>
+    <!-- Adicione mais modelos aqui -->
+  </ul>
+
+  <div id="galeria"></div>
+
+  <script>
+    document.querySelectorAll('.modelo-img').forEach(img => {
+      img.addEventListener('click', () => {
+        const folder = img.getAttribute('data-folder');
+        const imagens = ['costas.jpg', 'detalhe1.jpg', 'detalhe2.jpg']; // ajuste conforme seus arquivos
+
+        const galeria = document.getElementById('galeria');
+        galeria.innerHTML = ''; // limpa antes de adicionar
+
+        imagens.forEach(nome => {
+          const novaImg = document.createElement('img');
+          novaImg.src = `static/${folder}/${nome}`;
+          novaImg.alt = nome;
+          novaImg.width = 120;
+          galeria.appendChild(novaImg);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
