@@ -1,103 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-  <title>Categorias</title>
-  <style>
-    .categoria-card {
-      display: inline-block;
-      margin: 20px;
-      text-align: center;
-    }
-    .categoria-card img {
-      width: 150px;
-      border-radius: 8px;
-    }
-    .categoria-card h3 {
-      margin-top: 10px;
-      font-size: 18px;
-    }
-
-    .modelo {
-      display: inline-block;
-      margin: 20px;
-      text-align: center;
-    }
-    .modelo img {
-      width: 150px;
-      border-radius: 8px;
-    }
-    .modelo p {
-      margin-top: 8px;
-      font-size: 16px;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <title>Categorias para Palmeiras</title>
+  <link rel="stylesheet" href="static/css/style.css">
 </head>
 <body>
   <h1>Categorias para Palmeiras</h1>
-
-<ul>
-  <div class="categoria-card">
-    <a href="masculina.html?time=Sao_Paulo">
-      <img src="static/Camisas/img/Sao_Paulo.png" alt="São Paulo">
-      <h3>Masculina - São Paulo</h3>
+  
+<div class="container">
+  <div class="card">
+    <a href="modelos.html?time=Palmeiras&categoria=Masculina">
+      <img src="static/Camisas/img/categorias/masculina.jpg" alt="Masculina">
+      <h3>Masculina</h3>
     </a>
   </div>
-  <div class="categoria-card">
-    <a href="masculina.html?time=Palmeiras">
-      <img src="static/Camisas/img/Palmeiras.png" alt="Palmeiras">
-      <h3>Masculina - Palmeiras</h3>
+  <div class="card">
+    <a href="modelos.html?time=Palmeiras&categoria=Feminina">
+      <img src="static/Camisas/img/categorias/feminina.jpg" alt="Feminina">
+      <h3>Feminina</h3>
     </a>
   </div>
-  <div class="categoria-card">
-    <a href="masculina.html?time=Corinthians">
-      <img src="static/Camisas/img/Corinthians.png" alt="Corinthians">
-      <h3>Masculina - Corinthians</h3>
+  <div class="card">
+    <a href="modelos.html?time=Palmeiras&categoria=Infantil">
+      <img src="static/Camisas/img/categorias/infantil.jpg" alt="Infantil">
+      <h3>Infantil</h3>
     </a>
   </div>
-  <div class="categoria-card">
-    <a href="masculina.html?time=Flamengo">
-      <img src="static/Camisas/img/Flamengo.png" alt="Flamengo">
-      <h3>Masculina - Flamengo</h3>
+  <div class="card">
+    <a href="modelos.html?time=Palmeiras&categoria=Jogador">
+      <img src="static/Camisas/img/categorias/jogador.jpg" alt="Jogador">
+      <h3>Jogador</h3>
     </a>
   </div>
-</ul>
+</div>
 
-  <!-- 🔽 Div para os modelos -->
-  <div id="modelos"></div>
-
-  <!-- 🔽 Script para carregar os modelos dinamicamente -->
-  <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const time = urlParams.get('time');
-
-    const modelos = {
-      "Palmeiras": [
-        { nome: "Palmeiras01", caminho: "static/Camisas/Masculina/Palmeiras01/frente.jpg" },
-        { nome: "Palmeiras02", caminho: "static/Camisas/Masculina/Palmeiras02/frente.jpg" }
-      ],
-      "Corinthians": [
-        { nome: "Corinthians01", caminho: "static/Camisas/Masculina/Corinthians01/frente.jpg" }
-      ]
-      // Adicione os outros times aqui
-    };
-
-    const container = document.getElementById("modelos");
-
-    if (modelos[time]) {
-      modelos[time].forEach(modelo => {
-        const div = document.createElement("div");
-        div.className = "modelo";
-        div.innerHTML = `
-          <a href="modelo_${modelo.nome}.html">
-            <img src="${modelo.caminho}" alt="${modelo.nome}">
-            <p>${modelo.nome}</p>
-          </a>
-        `;
-        container.appendChild(div);
-      });
-    } else {
-      container.innerHTML = "<p>Time não encontrado.</p>";
-    }
-  </script>
 </body>
 </html>
