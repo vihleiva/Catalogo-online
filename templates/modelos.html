@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Modelos</title>
+</head>
+<body>	
+	<h1>Modelos - {{ time }} / {{ categoria }}</h1>
+    <ul>
+    {% for modelo in modelos %}
+        <li>
+            <p>{{ modelo }}</p>
+            <a href="{{ url_for('show_modelo', time=time, categoria=categoria, modelo=modelo) }}">
+                <img src="{{ url_for('static', filename='Camisas/img/' + time + '/' + categoria + '/' + modelo + '/frente.jpg') }}"
+                     width="150">
+            </a>
+        </li>
+	{% endfor %}
+</ul>
+<div id="galeria"></div>
+<script>
+document.querySelectorAll('.modelo-img').forEach(img => {
+    img.addEventListener('click', () => {
+        const folder = img.getAttribute('data-folder');
+        const imagens = ['costas.jpg', 'detalhe1.jpg', 'detalhe2.jpg']; // ajuste conforme seus arquivos
+
+        const galeria = document.getElementById('galeria');
+        galeria.innerHTML = ''; // limpa antes de adicionar
+
+        imagens.forEach(nome => {
+            const novaImg = document.createElement('img');
+            novaImg.src = `/static/${folder}/${nome}`;
+            novaImg.alt = nome;
+            novaImg.width = 120;
+            galeria.appendChild(novaImg);
+        });
+    });
+});
+</script>
+</body>
+</html>
