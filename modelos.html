@@ -2,26 +2,49 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Modelos - Palmeiras / Masculina</title>
+  <title>Categorias</title>
   <link rel="stylesheet" href="static/css/style.css">
 </head>
 <body>
-  <h1>Modelos - Palmeiras / Masculina</h1>
-  
-<ul>
-  <li>
-    <p>modelo1</p>
-    <a href="modelo.html?time=Palmeiras&categoria=Masculina&modelo=modelo1">
-      <img class="modelo-img" src="static/Camisas/img/Palmeiras/Masculina/modelo1/frente.jpg" width="150">
-    </a>
-  </li>
-  <li>
-    <p>modelo2</p>
-    <a href="modelo.html?time=Palmeiras&categoria=Masculina&modelo=modelo2">
-      <img class="modelo-img" src="static/Camisas/img/Palmeiras/Masculina/modelo2/frente.jpg" width="150">
-    </a>
-  </li>
-</ul>
+  <h1 id="titulo-categorias">Categorias</h1>
 
+  <div class="container" id="categorias-container">
+    <!-- As categorias serão inseridas aqui via JavaScript -->
+  </div>
+
+  <script>
+    // Captura o nome do time da URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const nomeTime = urlParams.get('time');
+
+    // Atualiza o título da página
+    document.getElementById('titulo-categorias').innerText = `Categorias para ${nomeTime}`;
+
+    // Lista de categorias
+    const categorias = [
+      { nome: 'Masculina', imagem: 'masculina.jpg' },
+      { nome: 'Feminina', imagem: 'feminina.jpg' },
+      { nome: 'Infantil', imagem: 'infantil.jpg' },
+      { nome: 'Jogador', imagem: 'jogador.jpg' }
+    ];
+
+    // Container onde as categorias serão exibidas
+    const container = document.getElementById('categorias-container');
+
+    // Gera os cards dinamicamente
+    categorias.forEach(categoria => {
+      const card = document.createElement('div');
+      card.className = 'card';
+
+      card.innerHTML = `
+        <a href="modelos.html?time=${nomeTime}&categoria=${categoria.nome}">
+          <img src="static/Camisas/img/categorias/${categoria.imagem}" alt="${categoria.nome}">
+          <h3>${categoria.nome}</h3>
+        </a>
+      `;
+
+      container.appendChild(card);
+    });
+  </script>
 </body>
 </html>
