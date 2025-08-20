@@ -1,55 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-  <title>Modelos</title>
-  <style>
-    .modelo-img {
-      cursor: pointer;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      margin: 10px;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <title>Categorias</title>
+  <link rel="stylesheet" href="static/css/style.css">
 </head>
-<body>  
-  <h1>Modelos - Palmeiras / Masculina</h1>
-  <ul>
-    <li>
-      <p>modelo1</p>
-      <a href="modelo.html">
-        <img class="modelo-img" src="static/Camisas/img/Palmeiras/Masculina/modelo1/frente.jpg" 
-             data-folder="Camisas/img/Palmeiras/Masculina/modelo1" width="150">
-      </a>
-    </li>
-    <li>
-      <p>modelo2</p>
-      <a href="modelo.html">
-        <img class="modelo-img" src="static/Camisas/img/Palmeiras/Masculina/modelo2/frente.jpg" 
-             data-folder="Camisas/img/Palmeiras/Masculina/modelo2" width="150">
-      </a>
-    </li>
-    <!-- Adicione mais modelos aqui -->
-  </ul>
+<body>
+  <h1 id="titulo-categorias">Categorias</h1>
 
-  <div id="galeria"></div>
+  <div class="container" id="categorias-container">
+    <!-- As categorias serão inseridas aqui via JavaScript -->
+  </div>
 
   <script>
-    document.querySelectorAll('.modelo-img').forEach(img => {
-      img.addEventListener('click', () => {
-        const folder = img.getAttribute('data-folder');
-        const imagens = ['costas.jpg', 'detalhe1.jpg', 'detalhe2.jpg']; // ajuste conforme seus arquivos
+    // Captura o nome do time da URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const nomeTime = urlParams.get('time');
 
-        const galeria = document.getElementById('galeria');
-        galeria.innerHTML = ''; // limpa antes de adicionar
+    // Atualiza o título da página
+    document.getElementById('titulo-categorias').innerText = `Categorias para ${nomeTime}`;
 
-        imagens.forEach(nome => {
-          const novaImg = document.createElement('img');
-          novaImg.src = `static/${folder}/${nome}`;
-          novaImg.alt = nome;
-          novaImg.width = 120;
-          galeria.appendChild(novaImg);
-        });
-      });
+    // Lista de categorias
+    const categorias = [
+      { nome: 'Masculina', imagem: 'masculina.jpg' },
+      { nome: 'Feminina', imagem: 'feminina.jpg' },
+      { nome: 'Infantil', imagem: 'infantil.jpg' },
+      { nome: 'Jogador', imagem: 'jogador.jpg' }
+    ];
+
+    // Container onde as categorias serão exibidas
+    const container = document.getElementById('categorias-container');
+
+    // Gera os cards dinamicamente
+    categorias.forEach(categoria => {
+      const card = document.createElement('div');
+      card.className = 'card';
+
+      card.innerHTML = `
+        <a href="modelos.html?time=${nomeTime}&categoria=${categoria.nome}">
+          <img src="static/Camisas/img/categorias/${categoria.imagem}" alt="${categoria.nome}">
+          <h3>${categoria.nome}</h3>
+        </a>
+      `;
+
+      container.appendChild(card);
     });
   </script>
 </body>
