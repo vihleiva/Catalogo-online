@@ -2,44 +2,36 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Categorias</title>
+  <title>Modelos</title>
   <link rel="stylesheet" href="static/css/style.css">
 </head>
 <body>
-  <h1 id="titulo-categorias">Categorias</h1>
+  <h1 id="titulo-modelos">Modelos</h1>
 
-  <div class="container" id="categorias-container">
-    <!-- As categorias serão inseridas aqui via JavaScript -->
+  <div class="container" id="modelos-container">
+    <!-- Os modelos serão inseridos aqui via JavaScript -->
   </div>
 
   <script>
-    // Captura o nome do time da URL
     const urlParams = new URLSearchParams(window.location.search);
-    const nomeTime = urlParams.get('time');
+    const time = urlParams.get('time');
+    const categoria = urlParams.get('categoria');
 
-    // Atualiza o título da página
-    document.getElementById('titulo-categorias').innerText = `Categorias para ${nomeTime}`;
+    document.getElementById('titulo-modelos').innerText = `Modelos ${categoria} do ${time}`;
 
-    // Lista de categorias
-    const categorias = [
-      { nome: 'Masculina', imagem: 'masculina.jpg' },
-      { nome: 'Feminina', imagem: 'feminina.jpg' },
-      { nome: 'Infantil', imagem: 'infantil.jpg' },
-      { nome: 'Jogador', imagem: 'jogador.jpg' }
-    ];
+    // Lista de modelos (exemplo fixo, pode ser ajustado conforme os nomes reais das pastas)
+    const modelos = ['modelo1', 'modelo2', 'modelo3'];
 
-    // Container onde as categorias serão exibidas
-    const container = document.getElementById('categorias-container');
+    const container = document.getElementById('modelos-container');
 
-    // Gera os cards dinamicamente
-    categorias.forEach(categoria => {
+    modelos.forEach(modelo => {
       const card = document.createElement('div');
       card.className = 'card';
 
       card.innerHTML = `
-        <a href="modelos.html?time=${nomeTime}&categoria=${categoria.nome}">
-          <img src="static/Camisas/img/categorias/${categoria.imagem}" alt="${categoria.nome}">
-          <h3>${categoria.nome}</h3>
+        <a href="detalhes.html?time=${time}&categoria=${categoria}&modelo=${modelo}">
+          <img src="static/Camisas/img/${time}/${categoria}/${modelo}/frente.jpg" alt="${modelo}">
+          <h3>${modelo}</h3>
         </a>
       `;
 

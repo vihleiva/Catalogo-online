@@ -9,6 +9,8 @@
       width: 200px;
       margin: 10px;
       cursor: zoom-in;
+      border: 2px solid #ccc;
+      border-radius: 5px;
     }
     .modal {
       display: none;
@@ -27,10 +29,26 @@
       margin: 5% auto;
       cursor: zoom-out;
     }
+    .legenda {
+      text-align: center;
+      font-size: 14px;
+      color: #333;
+    }
+    .voltar {
+      margin: 20px;
+      display: inline-block;
+      text-decoration: none;
+      background-color: #eee;
+      padding: 10px 15px;
+      border-radius: 5px;
+      color: #333;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
   <h1 id="titulo-detalhes">Detalhes do Modelo</h1>
+  <a id="link-voltar" class="voltar" href="#">← Voltar</a>
   <div class="galeria" id="galeria-modelo"></div>
 
   <div class="modal" id="modal">
@@ -44,6 +62,7 @@
     const modelo = urlParams.get('modelo');
 
     document.getElementById('titulo-detalhes').innerText = `Detalhes do modelo ${modelo} (${categoria} - ${time})`;
+    document.getElementById('link-voltar').href = `modelos.html?time=${time}&categoria=${categoria}`;
 
     const galeria = document.getElementById('galeria-modelo');
     const imagens = ['frente.jpg', 'costas.jpg', 'detalhe1.jpg', 'detalhe2.jpg']; // Adicione conforme necessário
@@ -54,7 +73,16 @@
       imagem.src = caminho;
       imagem.alt = img;
       imagem.onclick = () => abrirModal(caminho);
-      galeria.appendChild(imagem);
+
+      const container = document.createElement('div');
+      container.appendChild(imagem);
+
+      const legenda = document.createElement('div');
+      legenda.className = 'legenda';
+      legenda.innerText = img;
+
+      container.appendChild(legenda);
+      galeria.appendChild(container);
     });
 
     function abrirModal(src) {
