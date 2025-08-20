@@ -2,37 +2,79 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Modelo - Palmeiras / Masculina</title>
+  <title>Modelos</title>
   <link rel="stylesheet" href="static/css/style.css">
+  <style>
+    .modelo img {
+      width: 200px;
+      margin: 10px;
+      cursor: zoom-in;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.8);
+    }
+    .modal img {
+      display: block;
+      max-width: 90%;
+      max-height: 90%;
+      margin: 5% auto;
+      cursor: zoom-out;
+    }
+  </style>
 </head>
 <body>
-  <h1>Modelo - Palmeiras / Masculina</h1>
-  
-<div class="categoria">
-  <div class="modelo">
-    <img src="static/Camisas/img/Palmeiras/Masculina/modelo1/frente.jpg" alt="frente" onclick="openModal(this.src)">
-    <p>frente.jpg</p>
+  <h1 id="titulo-modelos">Modelos</h1>
+  <div class="categoria" id="modelos-container"></div>
+
+  <div id="imageModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImage">
   </div>
-  <div class="modelo">
-    <img src="static/Camisas/img/Palmeiras/Masculina/modelo1/costas.jpg" alt="costas" onclick="openModal(this.src)">
-    <p>costas.jpg</p>
-  </div>
-</div>
 
-<div id="imageModal" class="modal">
-  <span class="close" onclick="closeModal()">&times;</span>
-  <img class="modal-content" id="modalImage">
-</div>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const time = urlParams.get('time');
+    const categoria = urlParams.get('categoria');
 
-<script>
-function openModal(src) {
-  document.getElementById("imageModal").style.display = "block";
-  document.getElementById("modalImage").src = src;
-}
-function closeModal() {
-  document.getElementById("imageModal").style.display = "none";
-}
-</script>
+    document.getElementById('titulo-modelos').innerText = `Modelos - ${time} / ${categoria}`;
 
+    // Lista de modelos (você pode tornar isso dinâmico futuramente)
+    const modelos = ['modelo1', 'modelo2', 'modelo3']; // Adicione conforme necessário
+
+    const container = document.getElementById('modelos-container');
+
+    modelos.forEach(modelo => {
+      const frente = `static/Camisas/${time}/${categoria}/${modelo}/frente.jpg`;
+      const costas = `static/Camisas/${time}/${categoria}/${modelo}/costas.jpg`;
+
+      const divModelo = document.createElement('div');
+      divModelo.className = 'modelo';
+
+      divModelo.innerHTML = `
+        <img src="${frente}" alt="frente" onclick="openModal('${frente}')">
+        <p>frente.jpg</p>
+        <img src="${costas}" alt="costas" onclick="openModal('${costas}')">
+        <p>costas.jpg</p>
+      `;
+
+      container.appendChild(divModelo);
+    });
+
+    function openModal(src) {
+      document.getElementById("imageModal").style.display = "block";
+      document.getElementById("modalImage").src = src;
+    }
+
+    function closeModal() {
+      document.getElementById("imageModal").style.display = "none";
+    }
+  </script>
 </body>
 </html>
