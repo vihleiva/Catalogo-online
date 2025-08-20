@@ -1,50 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
+  <meta charset="UTF-8">
   <title>Times</title>
-  <style>
-    .time {
-      display: inline-block;
-      margin: 20px;
-      text-align: center;
-    }
-    .time img {
-      width: 100px;
-      border-radius: 8px;
-    }
-    .time p {
-      margin-top: 8px;
-      font-size: 16px;
-    }
-  </style>
+  <link rel="stylesheet" href="static/css/style.css">
 </head>
 <body>
   <h1>Escolha um time</h1>
-  <ul>
+  <div class="times-container">
+    
+    <!-- Palmeiras -->
     <div class="time">
-      <a href="categorias.html">
-        <img src="static/Camisas/img/Palmeiras.png" alt="Palmeiras">
+      <a href="categorias.html?time=Palmeiras">
+        <img src="static/Camisas/img/palmeiras.png" alt="Palmeiras">
         <p>Palmeiras</p>
       </a>
     </div>
+
+    <!-- Corinthians -->
     <div class="time">
-      <a href="categorias.html">
-        <img src="static/Camisas/img/Corinthians.png" alt="Corinthians">
+      <a href="categorias.html?time=Corinthians">
+        <img src="static/Camisas/img/corinthians.png" alt="Corinthians">
         <p>Corinthians</p>
       </a>
     </div>
+
+    <!-- Flamengo -->
     <div class="time">
-      <a href="categorias.html">
-        <img src="static/Camisas/img/Santos.png" alt="Santos">
-        <p>Santos</p>
+      <a href="categorias.html?time=Flamengo">
+        <img src="static/Camisas/img/flamengo.png" alt="Flamengo">
+        <p>Flamengo</p>
       </a>
     </div>
+
+    <!-- São Paulo -->
     <div class="time">
-      <a href="categorias.html">
-        <img src="static/Camisas/img/Sao_Paulo.png" alt="São Paulo">
+      <a href="categorias.html?time=Sao_Paulo">
+        <img src="static/Camisas/img/sao_paulo.png" alt="São Paulo">
         <p>São Paulo</p>
       </a>
     </div>
-  </ul>
+
+  </div>
 </body>
 </html>
