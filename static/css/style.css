@@ -1,11 +1,59 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&display=swap');
+
 body {
-  font-family: Arial, sans-serif;
-  padding: 20px;
+  font-family: 'Oswald', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+header {
+  background-color: #004aad;
+  color: white;
+  padding: 15px 30px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #ffcc00;
+}
+
+main {
+  padding: 100px 20px 40px;
 }
 
 h1 {
   text-align: center;
   margin-bottom: 30px;
+  font-size: 28px;
+  color: #004aad;
+}
+
+.breadcrumbs {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #666;
 }
 
 .times-container,
@@ -22,10 +70,21 @@ h1 {
 .categoria-card,
 .modelo {
   text-align: center;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  border: 2px solid #004aad;
+  border-radius: 10px;
   padding: 10px;
   width: 200px;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.time:hover,
+.card:hover,
+.categoria-card:hover,
+.modelo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 .time img,
@@ -33,7 +92,7 @@ h1 {
 .categoria-card img,
 .modelo img {
   width: 100%;
-  border-radius: 4px;
+  border-radius: 6px;
   transition: transform 0.3s ease;
   cursor: pointer;
 }
@@ -71,4 +130,38 @@ h1 {
   font-size: 40px;
   font-weight: bold;
   cursor: pointer;
+}
+
+.voltar {
+  margin: 20px;
+  display: inline-block;
+  text-decoration: none;
+  background-color: #004aad;
+  padding: 10px 15px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.voltar:hover {
+  background-color: #003080;
+}
+
+@media screen and (max-width: 700px) {
+  .time,
+  .card,
+  .categoria-card,
+  .modelo {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  nav {
+    flex-direction: column;
+  }
+
+  nav a {
+    margin: 10px 0;
+  }
 }
